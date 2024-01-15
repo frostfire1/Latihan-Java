@@ -1,0 +1,87 @@
+
+======================================
+Nama             : Joe
+
+Rata-rata Nilai  : 0.0
+Predikat         : F
+======================================
+======================================
+Nama             : Joe
+
+Rata-rata Nilai  : 0.0
+Predikat         : F
+======================================
+======================================
+Nama             : Joe
+
+Rata-rata Nilai  : 100.0
+Predikat         : A
+======================================
+======================================
+Nama             : Joe
+
+Rata-rata Nilai  : 100.0
+Predikat         : A
+======================================
+======================================
+Nama             : Joe
+
+Rata-rata Nilai  : 70.0
+Predikat         : B
+======================================
+======================================
+Nama             : Joe
+
+Rata-rata Nilai  : 20.0
+Predikat         : F
+======================================
+======================================
+Nama             : Joe
+
+Pendidikan Agama      : 200.0
+PKn      : 200.0
+Bahasa Indonesia      : 200.0
+Bahasa Inggris      : 200.0
+Matematika      : 200.0
+Rata-rata Nilai  : 200.0
+Predikat         : INPOSIBLE
+======================================
+======================================
+Nama             : Zuhair Zuhdi
+
+Pendidikan Agama      : -1.0
+PKn      : -2.0
+Bahasa Indonesia      : -3.0
+Bahasa Inggris      : -4.0
+Matematika      : -5.0
+Rata-rata Nilai  : -3.0
+Predikat         : INPOSIBLE
+======================================
+======================================
+Nama             : Frost Fire
+Pendidikan Agama      : -1.0
+PKn      : -2.0
+Bahasa Indonesia      : -3.0
+Bahasa Inggris      : -4.0
+Matematika      : -5.0
+Rata-rata Nilai  : -3.0
+Predikat         : INPOSIBLE
+======================================
+======================================
+Nama             : JoePendidikan Agama      : 200.0
+PKn      : 200.0
+Bahasa Indonesia      : 200.0
+Bahasa Inggris      : 200.0
+Matematika      : 200.0
+Rata-rata Nilai  : 200.0
+Predikat         : INPOSIBLE
+======================================
+======================================
+Nama             : MUhammad Zuhair4 ZuhdiPendidikan Agama      : 200.0
+PKn      : 200.0
+Bahasa Indonesia      : 200.0
+Bahasa Inggris      : 200.0
+Matematika      : 20.0
+Rata-rata Nilai  : 164.0
+Predikat         : INPOSIBLE
+======================================
