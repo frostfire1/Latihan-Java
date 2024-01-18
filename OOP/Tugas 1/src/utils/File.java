@@ -1,6 +1,5 @@
 package utils;
 
-import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ public class File {
         }
     }
 
-    public static @Nullable ArrayList<Sekolah> loadSekolah() {
+    public static  ArrayList<Sekolah> loadSekolah() {
         ArrayList<Sekolah> readData = new ArrayList<Sekolah>();;
         java.io.File file = new java.io.File("Sekolah.joe");
         if(file.exists()) {
@@ -40,7 +39,7 @@ public class File {
         }
     }
 
-    public static @Nullable ArrayList<Kelas> loadKelas() {
+    public static  ArrayList<Kelas> loadKelas() {
         ArrayList<Kelas> readData = new ArrayList<Kelas>();;
         java.io.File file = new java.io.File("Kelas.joe");
         if (file.exists()) {
@@ -66,7 +65,7 @@ public class File {
         }
     }
 
-    public static @Nullable ArrayList<Siswa> loadSiswa() {
+    public static  ArrayList<Siswa> loadSiswa() {
         ArrayList<Siswa> readData = new ArrayList<Siswa>();;
         java.io.File file = new java.io.File("Siswa.joe");
         if (file.exists()) {

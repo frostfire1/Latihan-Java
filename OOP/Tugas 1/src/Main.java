@@ -2,8 +2,6 @@ import utils.File;
 import utils.Kelas;
 import utils.Sekolah;
 import utils.Siswa;
-
-import java.lang.reflect.Type;
 import java.util.Scanner;
 
 
@@ -21,10 +19,15 @@ public class Main {
         kelas.setKelas(File.loadKelas());
         siswa.setSiswa(File.loadSiswa());
         //Testing();
+        Start();
+    }
+
+    static void Start(){
         int pilihan1;
         //Loop Program
-        while(true) {
-            System.out.println("Basic simple program Database Sekolah");
+        boolean a = true;
+        while(a) {
+            System.out.println("\n\nBasic simple program Database Sekolah");
             System.out.println("0. Tutup Program");
             System.out.println("1. List Sekolah");
             System.out.println("2. list semua Kelas di Database");
@@ -45,7 +48,7 @@ public class Main {
                 File.saveKelas(kelas.getArrayList());
                 File.saveSiswa(siswa.getArrayList());
                 System.out.println("Good Bye....");
-                break;
+                a = false;
             }
         }
     }
@@ -63,18 +66,22 @@ public class Main {
         System.out.println("==========List Kelas==========");
         int i = 1;
         for (Kelas listkelas : kelas.getArrayList()){
-            System.out.printf("%d. %10s (%s)",i,listkelas.Nama,listkelas.skull.N);
+            System.out.printf("\n%d. %10s (%s)",i,listkelas.Nama,listkelas.skull.N);
             i++;
         }
+        System.out.println("ketik apasaja lalu enter untuk keluar");
+        inpt.next();
     }
 
     static void listSiswa(){
         System.out.println("==========List Siswa==========");
         int i = 1;
         for (Siswa listsiswa : siswa.getArrayList()){
-            System.out.printf("%d. %10s %10s  %s",i,listsiswa.N,listsiswa.k.Nama,listsiswa.k.skull.N);
+            System.out.printf("\n%d. %10s %10s  %s",i,listsiswa.N,listsiswa.k.Nama,listsiswa.k.skull.N);
             i++;
         }
+        System.out.println("ketik apasaja lalu enter untuk keluar");
+        inpt.next();
     }
 
     static void KelasDiSekolah(String NamaSekolah){
@@ -90,13 +97,16 @@ public class Main {
         System.out.println(LiskKelas.length + 1 + ". Untuk Menambahkan Data");
         Sekolah[] k = sekolah.getsekolah();
         int pilihan = inpt.nextInt();
-        if (pilihan > 0 && pilihan <= LiskKelas.length) InfoKelas(LiskKelas[--i]);
+        if (pilihan > 0 && pilihan <= LiskKelas.length) InfoKelas(LiskKelas[--pilihan]);
+        if (pilihan == 0) Start();
         if (pilihan == LiskKelas.length + 1){
             for(Sekolah inpo : k) {
                 if (inpo.N.equals(NamaSekolah)) {
                     System.out.println("Input Nama Kelas: ");
-                    inpt.next();
-                    kelas.addKelas(new Kelas(inpt.nextLine(),inpo));
+                    String nama=" ";
+                    nama= inpt.nextLine();
+                    nama+=inpt.nextLine();
+                    kelas.addKelas(new Kelas(nama,inpo));
                 }
             }
             System.out.println("Data Sudah Ditambah");
@@ -116,10 +126,31 @@ public class Main {
             System.out.println(i + ". " + list);
             i++;
         }
-
+        System.out.println("Pilih Nomer kelas untuk melihat informasi");
+        System.out.println("0. Untuk kembali");
+        System.out.println(ListSiswa.length + 1 + ". Untuk Menambahkan Data");
+        int pilihan = inpt.nextInt();
+        if (pilihan > 0 && pilihan <= ListSiswa.length) {
+            for(Siswa s : siswa.getArrayList()){
+                if(s.N.equals(ListSiswa[--pilihan])){
+                    InfoSiswa(s);
+                }
+            }
+        }
+        if (pilihan == ListSiswa.length + 1){
+            System.out.println("Input Nama Siswa: ");
+            String nama=" ";
+            nama= inpt.nextLine();
+            nama+=inpt.nextLine();
+            for(Kelas k : kelas.getArrayList()) {
+                if (k.Nama.equals(NamaKelas))siswa.addSiswa(new Siswa(nama,k));
+            }
+            System.out.println("Sudah Ditambahkan");
+            SiswaDiKelas(NamaKelas);
+        }
     }
 
-    static void SiswaDiSekolah(String NamaSekolah){
+    static void SiswaDiSekolah(String NamaSekolah,utils.Sekolah inpo){
         System.out.println("==========List Siswa di Sekolah==========");
         String[] ListSiswa = siswa.searchSiswaBySekolah(NamaSekolah);
         int i = 1;
@@ -127,6 +158,9 @@ public class Main {
             System.out.println(i + ". " + list);
             i++;
         }
+        System.out.println("ketik apasaja lalu enter untuk keluar");
+        inpt.next();
+        InfoSekolah(inpo);
     }
 
     static void InfoSekolah(utils.Sekolah inpo){
@@ -134,21 +168,22 @@ public class Main {
         String[] ListKelas = kelas.searchKelasBySekolah(inpo.N);
         System.out.println("=======INFO Sekolah=======");
         System.out.println("Nama         : " + inpo.N);
+
         System.out.println("Jumlah Kelas : " + ListKelas.length);
         System.out.println("Jumlah Siswa : " + ListSiswa.length);
         System.out.println("0. untuk Kembali ke menu");
         System.out.println("1. Melihat Kelas di sekolah tersebut");
         System.out.println("2. Melihat Siswa di sekolah tersebut");
         int pilihan = inpt.nextInt();
-        if(pilihan == 0 ) return; // :)
-
+        if(pilihan == 0 ) Start(); // :)
         if(pilihan == 1) KelasDiSekolah(inpo.N);
+        if(pilihan == 2) SiswaDiSekolah(inpo.N,inpo);
     }
 
     static void InfoKelas(String nama){
         Kelas[] k = kelas.getArrayList().toArray(new Kelas[0]);
         int i = 0;
-        int index;
+        int index = 0;
         for(Kelas inpo : k) {
             if (inpo.Nama.equals(nama)) {
                 System.out.println("=======INFO KELAS=======");
@@ -163,10 +198,10 @@ public class Main {
         System.out.println("1. List Siswa");
         int pemilihan = inpt.nextInt();
         if(pemilihan == 0){
-            System.out.println();
+            Start();
         }
         if(pemilihan == 1){
-            listSiswa();
+            SiswaDiKelas(k[index].Nama);
         }
         else {
             InfoKelas(nama);
@@ -194,7 +229,7 @@ public class Main {
         }
     }
 
-    static void pemilihan1(){
+    static void pemilihan1() {
         listSekolah();
         Sekolah[] TempData = sekolah.getsekolah();
         System.out.println("0. Untuk Kembali");
@@ -202,15 +237,15 @@ public class Main {
         System.out.println("\nPilih Nomer Sekolah untuk melihat info Sekolah");
         int pilihan = inpt.nextInt();
         System.out.println();
-        if(pilihan > 0 && pilihan <= TempData.length){
+        if (pilihan > 0 && pilihan <= TempData.length) {
             --pilihan;
             InfoSekolah(TempData[pilihan]);
         }
-        if(pilihan == 0){
+        if (pilihan == 0) {
             //yaudah sih
-            System.out.println();
+            Start();
         }
-        if (pilihan == (TempData.length + 1)){
+        if (pilihan == (TempData.length + 1)) {
             inpt.nextLine();
             System.out.println("Input Nama: ");
             String nama = inpt.nextLine();
@@ -224,11 +259,10 @@ public class Main {
                 System.out.println("Data Sudah ditambah");
                 System.out.println();
                 pemilihan1();
-            }catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("yah error kena typo: \n" + e);
             }
-        }
-        else {
+        } else {
             // ketika ngoding tapi malas
             System.out.println("Pilihan Gak ada");
             pemilihan1();
